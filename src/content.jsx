@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./content.css";
 import styled from "styled-components";
 import { css } from "styled-components";
@@ -9,31 +9,29 @@ const content = () => {
     const randompicker = Math.floor(Math.random() * 4);
     return names[randompicker];
   };
-  const Button = styled.button`
-    background-color: red;
-    border: none;
-    padding: 10px;
-    border-radius: 10px;
-    color: white;
-  `;
 
-  const Buttons = styled(Button)`
-    padding-bottom: 30px;
-    ${(props) =>
-      props.yellow &&
-      css`
-        background-color: yellow;
-      `}
-  `;
+  const handleClick = () => {
+    console.log("you cliked it !!");
+  };
+  const handleClick2 = (name) => {
+    console.log(`you cliked  ${name}`);
+  };
 
   return (
     <main className="main_content">
       <h1>Hello {handleNamChange()}</h1>
-      <Button>Click me</Button>
-      <Buttons>don't click me </Buttons>
-      <Buttons yellow>don't click me </Buttons>
+      <button onClick={handleClick}>Click it !!</button>
+      <button
+        onClick={() => {
+          handleClick2("Fuad!");
+        }}
+      >
+        Click it !!
+      </button>
     </main>
   );
 };
 
 export default content;
+
+// on App.js

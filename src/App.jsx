@@ -1,4 +1,3 @@
-import "./App.css";
 import Header from "./Header";
 import Content from "./content";
 import Footer from "./Footer";
@@ -16,3 +15,5 @@ function App() {
 }
 
 export default App;
+
+// 47:20 into the course!!
