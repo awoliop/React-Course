@@ -34,6 +34,11 @@ function App() {
       <div>{"Awelker"}</div>
       <div>Awelker</div>
       <p>{[1, 2, 3, 4, 5]}</p>
+      {/* objects are not allowed as a react child!! */}
+      {/* <p>{{ name: "Awleker" }}</p> */}
+      {/*  booleans vslaues will not be rendered as we can see below!!*/}
+      {/* <p>{2 === 4}</p> */}
+      {/* <div>{true === false}</div> */}
     </>
   );
 }
