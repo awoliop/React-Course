@@ -5,8 +5,13 @@ import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
-  const name = "Awelker!!";
+  const name = "Awelker";
+  const handleNamChange = () => {
+    const names = ["Awelker", "Fuad", "Sumeya", "Eman"];
 
+    const randompicker = Math.floor(Math.random() * 4);
+    return names[randompicker];
+  };
   return (
     <>
       <div>
@@ -18,27 +23,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to see changes!!!
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <div>{name}</div>
-      <div>{1}</div>
-      <div>{"Awelker"}</div>
-      <div>Awelker</div>
-      <p>{[1, 2, 3, 4, 5]}</p>
-      {/* objects are not allowed as a react child!! */}
-      {/* <p>{{ name: "Awleker" }}</p> */}
-      {/*  booleans vslaues will not be rendered as we can see below!!*/}
-      {/* <p>{2 === 4}</p> */}
-      {/* <div>{true === false}</div> */}
+      <div>Hello {handleNamChange()}!</div>
     </>
   );
 }
