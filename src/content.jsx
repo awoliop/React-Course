@@ -5,9 +5,7 @@ import { css } from "styled-components";
 
 const LIST_NAME = ["Awelker", "Fuad", "Sumeya", "Eman"];
 const content = () => {
-  // const randompicker = Math.floor(Math.random() * 4);
   const [names, setNames] = useState("Awelker");
-
   const handleNamChange = () => {
     const randompicker1 = Math.floor(Math.random() * 4);
     let newName = LIST_NAME[randompicker1];
@@ -23,20 +21,35 @@ const content = () => {
   const handleClick = () => {
     console.log("you cliked it !!");
   };
+
   const handleClick2 = (name) => {
     console.log(`you cliked  ${name}`);
   };
+
   const handleClick3 = (event) => {
     console.log(event);
     console.log(event.target);
     console.log(event.target.innerText);
   };
+
   const greeting = ["Hello", "HI", "Asww"];
   const [greetings, setGreetings] = useState("Asww");
 
   const changeGreeting = () => {
     const randomPicker = Math.floor(Math.random() * 3);
     setGreetings(greeting[randomPicker]);
+  };
+
+  const [count, setCount] = useState(0);
+
+  // for the setcount effecr to take effect the function has to be re-run so we can log the newly setted value while setting another one !
+  const changeNumber = () => {
+    setCount(count + 1);
+    console.log(count);
+  };
+  // to prove that the setcount indeed has changed the number just couldn'y show it as it is has to be re-run!!
+  const changeNumber1 = () => {
+    console.log(count);
   };
 
   return (
@@ -58,6 +71,11 @@ const content = () => {
 
       <h1>{greetings}</h1>
       <button onClick={changeGreeting}>change-Greeting</button>
+
+      {/* some Gootcha!! with useState!! */}
+
+      <button onClick={changeNumber}>Change Number Console</button>
+      <button onClick={changeNumber1}>Change Number Console-1</button>
     </main>
   );
 };
