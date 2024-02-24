@@ -1,11 +1,14 @@
 import React from "react";
 import "./header.css";
+import styled from "styled-components";
+import { css } from "styled-components";
 
 const Header = () => {
   const headerStyle = {
     backgroundColor: "mediumblue",
     color: "#fff",
   };
+
   return (
     <header className="header" style={headerStyle}>
       <h1>Groceries List</h1>

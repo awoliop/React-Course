@@ -2,3 +2,19 @@
   font-size: 9px;
   font-weight: lighter;
 }
+
+button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: black;
+  color: white;
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 12px;
+  font-weight: bolder;
+}
+
+h1 {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
