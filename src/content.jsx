@@ -6,7 +6,7 @@ import { css } from "styled-components";
 const LIST_NAME = ["Awelker", "Fuad", "Sumeya", "Eman"];
 const content = () => {
   // const randompicker = Math.floor(Math.random() * 4);
-  const [names, setNames] = useState("");
+  const [names, setNames] = useState("Awelker");
 
   const handleNamChange = () => {
     const randompicker1 = Math.floor(Math.random() * 4);
@@ -31,6 +31,13 @@ const content = () => {
     console.log(event.target);
     console.log(event.target.innerText);
   };
+  const greeting = ["Hello", "HI", "Asww"];
+  const [greetings, setGreetings] = useState("Asww");
+
+  const changeGreeting = () => {
+    const randomPicker = Math.floor(Math.random() * 3);
+    setGreetings(greeting[randomPicker]);
+  };
 
   return (
     <main className="main_content">
@@ -48,6 +55,9 @@ const content = () => {
       </button>
       <button onClick={(event) => handleClick3(event)}>click for event</button>
       {/* <h1 onDoubleClick={handleClick}>Hello {handleNamChange()}</h1> */}
+
+      <h1>{greetings}</h1>
+      <button onClick={changeGreeting}>change-Greeting</button>
     </main>
   );
 };
