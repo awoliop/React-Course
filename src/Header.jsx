@@ -3,7 +3,7 @@ import "./header.css";
 import styled from "styled-components";
 import { css } from "styled-components";
 
-const Header = () => {
+const Header = (props) => {
   const headerStyle = {
     backgroundColor: "mediumblue",
     color: "#fff",
@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <header className="header" style={headerStyle}>
-      <h1>Groceries List</h1>
+      <h1>{props.title}</h1>
     </header>
   );
 };

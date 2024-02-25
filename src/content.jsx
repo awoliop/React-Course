@@ -2,80 +2,79 @@ import React, { useState } from "react";
 import "./content.css";
 import styled from "styled-components";
 import { css } from "styled-components";
+import { FaTrashAlt } from "react-icons/fa";
 
 const LIST_NAME = ["Awelker", "Fuad", "Sumeya", "Eman"];
+
 const content = () => {
-  const [names, setNames] = useState("Awelker");
-  const handleNamChange = () => {
-    const randompicker1 = Math.floor(Math.random() * 4);
-    let newName = LIST_NAME[randompicker1];
-    setNames(newName);
+  const [items, setitems] = useState(
+    // JSON.parse(localStorage.getItem("Shopping_list1")) ||
+    [
+      {
+        id: 1,
+        checked: true,
+        item: "One half pound bag of Cocoa Covered Almonds Unsalted",
+      },
+      {
+        id: 2,
+        checked: false,
+        item: "Item 2",
+      },
+      {
+        id: 3,
+        checked: false,
+        item: "Item 3",
+      },
+    ]
+  );
 
-    return newName;
+  const handleCheck = (id) => {
+    const listItems = items.map((item) =>
+      item.id === id ? { ...item, checked: !item.checked } : item
+    );
+
+    setitems(listItems);
+
+    localStorage.setItem("Shopping_list1", JSON.stringify(listItems));
   };
 
-  const changeOnCommand = () => {
-    return handleNamChange();
+  const handleDelete = (id) => {
+    const listItems = items.filter((item) => item.id !== id);
+    setitems(listItems);
+    localStorage.setItem("Shopping_list1", JSON.stringify(listItems));
   };
-
-  const handleClick = () => {
-    console.log("you cliked it !!");
-  };
-
-  const handleClick2 = (name) => {
-    console.log(`you cliked  ${name}`);
-  };
-
-  const handleClick3 = (event) => {
-    console.log(event);
-    console.log(event.target);
-    console.log(event.target.innerText);
-  };
-
-  const greeting = ["Hello", "HI", "Asww"];
-  const [greetings, setGreetings] = useState("Asww");
-
-  const changeGreeting = () => {
-    const randomPicker = Math.floor(Math.random() * 3);
-    setGreetings(greeting[randomPicker]);
-  };
-
-  const [count, setCount] = useState(0);
-
-  // for the setcount effecr to take effect the function has to be re-run so we can log the newly setted value while setting another one !
-  const changeNumber = () => {
-    setCount(count + 1);
-    console.log(count);
-  };
-  // to prove that the setcount indeed has changed the number just couldn'y show it as it is has to be re-run!!
-  const changeNumber1 = () => {
-    console.log(count);
-  };
-
   return (
     <main className="main_content">
-      {/* the bracket make it run immediatley  and not when called upon by an event!! */}
-      <h1>Hello {names}</h1>
-      <button onClick={handleNamChange}>change Name!!</button>
-      <button onClick={handleClick}>Click it !!</button>
-      {/* this function does not run immediately as it is wrapped up in the anonymoous function which only is triggered upon click!1 */}
-      <button
-        onClick={() => {
-          handleClick2("Fuad!");
-        }}
-      >
-        Click it !!
-      </button>
-      <button onClick={(event) => handleClick3(event)}>click for event</button>
-      {/* <h1 onDoubleClick={handleClick}>Hello {handleNamChange()}</h1> */}
+      {items.length ? (
+        <ul>
+          {items.map((item) => (
+            <li className="item" key={item.id}>
+              <input
+                type="checkbox"
+                checked={item.checked}
+                onChange={() => handleCheck(item.id)}
+              />
+              <label
+                htmlFor=""
+                onDoubleClick={() => handleCheck(item.id)}
+                style={item.checked ? { textDecoration: "line-through" } : null}
+              >
+                {item.item}
+              </label>
 
-      <h1>{greetings}</h1>
-      <button onClick={changeGreeting}>change-Greeting</button>
-
-      {/* some Gootcha!! with useState!! */}
-
-      <button onClick={changeNumber}>Change Number Console</button>
-      <button onClick={changeNumber1}>Change Number Console-1</button>
+              <FaTrashAlt
+                role="button"
+                tabIndex="0"
+                onClick={() => {
+                  handleDelete(item.id);
+                }}
+              />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="para">List is empty!!</p>
+      )}
     </main>
   );
 };
