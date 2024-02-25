@@ -1,11 +1,13 @@
 import React from "react";
 import Timestamp from "./time/Timestamp";
 
-const Footer = () => {
-  const today = new Date();
+const Footer = ({ itemsLength }) => {
   return (
     <footer>
-      <div>Copyright &copy; {"   " + today.getFullYear()}</div>
+      <p>
+        {/* singular and plural handle!! */}
+        {itemsLength} List {itemsLength === 1 ? "Item" : "Items"}
+      </p>
       <Timestamp />
     </footer>
   );

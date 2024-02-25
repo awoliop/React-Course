@@ -3,9 +3,7 @@ import "./header.css";
 import styled from "styled-components";
 import { css } from "styled-components";
 
-const Header = ({ title }) => {
-  // we cana destructure the props as it passed on and use it like this or how we normally have been using !!
-  // const Header = (props) => {
+const Header = (props) => {
   const headerStyle = {
     backgroundColor: "mediumblue",
     color: "#fff",
@@ -13,10 +11,13 @@ const Header = ({ title }) => {
 
   return (
     <header className="header" style={headerStyle}>
-      <h1>{title}</h1>
-      {/* <h1>{props.title}</h1> */}
+      <h1>{props.title}</h1>
     </header>
   );
+};
+//➡️➡️ for when we are not recieving no data or props is not being passed on for some reason!!
+Header.defaultProps = {
+  title: "Default Title!",
 };
 
 export default Header;

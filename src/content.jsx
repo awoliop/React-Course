@@ -4,29 +4,10 @@ import styled from "styled-components";
 import { css } from "styled-components";
 import { FaTrashAlt } from "react-icons/fa";
 
-const LIST_NAME = ["Awelker", "Fuad", "Sumeya", "Eman"];
-
-const content = () => {
-  const [items, setitems] = useState(
-    // JSON.parse(localStorage.getItem("Shopping_list1")) ||
-    [
-      {
-        id: 1,
-        checked: true,
-        item: "One half pound bag of Cocoa Covered Almonds Unsalted",
-      },
-      {
-        id: 2,
-        checked: false,
-        item: "Item 2",
-      },
-      {
-        id: 3,
-        checked: false,
-        item: "Item 3",
-      },
-    ]
-  );
+const content = ({ items, setitems }) => {
+  const itemCounter = () => {
+    return (length = items.length);
+  };
 
   const handleCheck = (id) => {
     const listItems = items.map((item) =>
