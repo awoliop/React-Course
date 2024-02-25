@@ -3,7 +3,9 @@ import "./header.css";
 import styled from "styled-components";
 import { css } from "styled-components";
 
-const Header = (props) => {
+const Header = ({ title }) => {
+  // we cana destructure the props as it passed on and use it like this or how we normally have been using !!
+  // const Header = (props) => {
   const headerStyle = {
     backgroundColor: "mediumblue",
     color: "#fff",
@@ -11,7 +13,8 @@ const Header = (props) => {
 
   return (
     <header className="header" style={headerStyle}>
-      <h1>{props.title}</h1>
+      <h1>{title}</h1>
+      {/* <h1>{props.title}</h1> */}
     </header>
   );
 };
