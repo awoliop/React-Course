@@ -20,6 +20,9 @@ Header.defaultProps = {
   title: "Default Title!",
 };
 
+Header.defaultprops = {
+  title: "Default Title",
+};
 export default Header;
 
 // on App.js
