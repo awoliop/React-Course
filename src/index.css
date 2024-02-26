@@ -182,3 +182,25 @@ button:hover {
   border-radius: 0.25rem;
   outline: none;
 }
+
+.project_div {
+  border: 1px solid black;
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project_input {
+  width: 250px;
+  height: 50px;
+  margin-top: 20px;
+  border: 1px solid black;
+}
+
+.project_input::placeholder {
+  font-size: 20px;
+  text-align: center;
+}
