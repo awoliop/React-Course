@@ -4,7 +4,6 @@ import SearchItem from "./SearchItem";
 import Content from "./content";
 import Footer from "./Footer";
 import { useState } from "react";
-import ProjectChallenge from "./ProjectChallenge";
 // import "./index.css";
 function App() {
   const [items, setitems] = useState(
@@ -61,7 +60,6 @@ function App() {
           setitems={setitems}
           setAndSaveItems={setAndSaveItems}
         />
-        <ProjectChallenge color={color} setColor={setColor} />
         <Footer itemsLength={items.length} />
       </div>
     </>
