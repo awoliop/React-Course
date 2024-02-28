@@ -41,27 +41,10 @@ function App() {
 
   const [color, setColor] = useState("");
 
-  // renders with every reload of change in component/ or reload of component!
-  useEffect(() => {
-    console.log("render");
-  });
-
   // when the page loads/ not reloads
   useEffect(() => {
     console.log("render");
-  }, []);
-
-  // rerenders whenever there is a change to the items array
-  useEffect(() => {
-    console.log("render");
   }, [items]);
-  // useEffect hook runs after compnent has been rendereed and not in the order it is written in the code!!
-  console.log("before");
-  useEffect(() => {
-    console.log("render");
-  }, [items]);
-
-  console.log("After");
   return (
     <>
       <div className="App">
