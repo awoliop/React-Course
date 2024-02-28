@@ -14,13 +14,24 @@ const content = ({ items, setitems, setAndSaveItems }) => {
       item.id === id ? { ...item, checked: !item.checked } : item
     );
 
-    setAndSaveItems(listItems);
+    /*
+    🔥🔥🔥
+     we just changed the setAnd save Item which was saving the data to the local
+     storage but now if has been handled by the useEffect in the App.js..so all we have to do it set the items and it will be saved to the local storage
+     */
+    setitems(listItems);
   };
 
   const handleDelete = (id) => {
     const listItems = items.filter((item) => item.id !== id);
 
-    setAndSaveItems(listItems);
+    /*
+    🔥🔥🔥
+     we just changed the setAnd save Item which was saving the data to the local
+     storage but now if has been handled by the useEffect in the App.js..so all we have to do it set the items and it will be saved to the local storage
+     */
+
+    setitems(listItems);
   };
   return (
     <main className="main_content">

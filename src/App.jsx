@@ -4,11 +4,11 @@ import SearchItem from "./SearchItem";
 import Content from "./content";
 import Footer from "./Footer";
 import { useEffect, useState } from "react";
+import ItemList from "./ItemList";
 // import "./index.css";
 function App() {
-  const [items, setitems] = useState(
-    JSON.parse(localStorage.getItem("Shopping_list1"))
-  );
+  const API_URL = "http://localhost:3000/items";
+  const [items, setitems] = useState([]);
 
   const [newItem, setNewItem] = useState("");
 
@@ -22,12 +22,7 @@ function App() {
       item: newItem,
     };
     const listItems = [...items, myItem];
-    setAndSaveItems(listItems);
-  };
-
-  const setAndSaveItems = (listItems) => {
     setitems(listItems);
-    localStorage.setItem("Shopping_list1", JSON.stringify(listItems));
   };
 
   const handleSubmit = (event) => {
@@ -41,27 +36,20 @@ function App() {
 
   const [color, setColor] = useState("");
 
-  // renders with every reload of change in component/ or reload of component!
   useEffect(() => {
-    console.log("render");
-  });
-
-  // when the page loads/ not reloads
-  useEffect(() => {
-    console.log("render");
+    const fetchItems = async () => {
+      try {
+        const response = await fetch(API_URL);
+        const listitems = await response.json();
+        setitems(listitems);
+        console.log(listitems);
+      } catch (error) {
+        console.log(error.stack);
+      }
+    };
+    (async () => await fetchItems())();
   }, []);
 
-  // rerenders whenever there is a change to the items array
-  useEffect(() => {
-    console.log("render");
-  }, [items]);
-  // useEffect hook runs after compnent has been rendereed and not in the order it is written in the code!!
-  console.log("before");
-  useEffect(() => {
-    console.log("render");
-  }, [items]);
-
-  console.log("After");
   return (
     <>
       <div className="App">
@@ -79,7 +67,6 @@ function App() {
             item.item.toLowerCase().includes(search.toLowerCase())
           )}
           setitems={setitems}
-          setAndSaveItems={setAndSaveItems}
         />
         <Footer itemsLength={items.length} />
       </div>
