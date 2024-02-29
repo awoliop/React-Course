@@ -61,7 +61,7 @@ function App() {
         />
 
         <SearchItem search={search} setSearch={setSearch} />
-        <main>
+        {/* <main>
           {!fetchError ? (
             <Content
               // if we are not search for anythin it would just render normally but if we are search it filters the items that contain the characters
@@ -72,6 +72,19 @@ function App() {
             />
           ) : (
             <p style={{ color: "red" }}>{fetchError}</p>
+          )}
+        </main> */}
+        {/* another way of doing presenting the data or the error would be !! */}
+        <main>
+          {fetchError && <p style={{ color: "red" }}>{fetchError}</p>}
+          {!fetchError && (
+            <Content
+              // if we are not search for anythin it would just render normally but if we are search it filters the items that contain the characters
+              items={items.filter((item) =>
+                item.item.toLowerCase().includes(search.toLowerCase())
+              )}
+              setitems={setitems}
+            />
           )}
         </main>
         <Footer itemsLength={items.length} />
