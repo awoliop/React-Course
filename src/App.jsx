@@ -5,6 +5,7 @@ import Content from "./content";
 import Footer from "./Footer";
 import { useEffect, useState } from "react";
 import ItemList from "./ItemList";
+import "./index.css";
 function App() {
   const API_URL = "http://localhost:3000/items";
   const [items, setitems] = useState([]);
@@ -12,6 +13,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [color, setColor] = useState("");
   const [fetchError, setFetchError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const addItem = (newItem) => {
     // checking if the items array is non-empty, for when it is empty to initialte it with 1
     const id = items.length ? items[items.length - 1].id + 1 : 1;
@@ -43,11 +45,16 @@ function App() {
         setFetchError(null);
       } catch (e) {
         setFetchError(e.message);
+      } finally {
+        setIsLoading(false);
       }
     };
-    // they both do work ...but if our fetchItems function where to retur some value upon which another computation is done then we will you the async option
+    // they both do work ...but if our fetchItems function where to return some value upon which another computation is done then we will you the async option
     // (async () => await fetchItems())();
-    fetchItems();
+
+    setTimeout(() => {
+      fetchItems();
+    }, 2000);
   }, []);
 
   return (
@@ -61,23 +68,12 @@ function App() {
         />
 
         <SearchItem search={search} setSearch={setSearch} />
-        {/* <main>
-          {!fetchError ? (
-            <Content
-              // if we are not search for anythin it would just render normally but if we are search it filters the items that contain the characters
-              items={items.filter((item) =>
-                item.item.toLowerCase().includes(search.toLowerCase())
-              )}
-              setitems={setitems}
-            />
-          ) : (
-            <p style={{ color: "red" }}>{fetchError}</p>
-          )}
-        </main> */}
-        {/* another way of doing presenting the data or the error would be !! */}
         <main>
+          {isLoading && !fetchError && (
+            <p className="loading_message">Loading Items...</p>
+          )}
           {fetchError && <p style={{ color: "red" }}>{fetchError}</p>}
-          {!fetchError && (
+          {!fetchError && !isLoading && (
             <Content
               // if we are not search for anythin it would just render normally but if we are search it filters the items that contain the characters
               items={items.filter((item) =>
@@ -87,6 +83,7 @@ function App() {
             />
           )}
         </main>
+
         <Footer itemsLength={items.length} />
       </div>
     </>

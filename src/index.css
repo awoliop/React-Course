@@ -182,3 +182,7 @@ button:hover {
   border-radius: 0.25rem;
   outline: none;
 }
+
+.loading_message {
+  margin-top: 140px;
+}
