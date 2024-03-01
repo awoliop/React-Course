@@ -3,13 +3,21 @@ import "./content.css";
 import styled from "styled-components";
 import { css } from "styled-components";
 import ItemList from "./ItemList";
+import ApiRequest from "./ApiRequest";
 
-const content = ({ items, setitems, setAndSaveItems }) => {
+const content = ({
+  items,
+  setitems,
+  setAndSaveItems,
+  API_URL,
+  fetchError,
+  setFetchError,
+}) => {
   const itemCounter = () => {
     return (length = items.length);
   };
 
-  const handleCheck = (id) => {
+  const handleCheck = async (id) => {
     const listItems = items.map((item) =>
       item.id === id ? { ...item, checked: !item.checked } : item
     );
@@ -20,10 +28,24 @@ const content = ({ items, setitems, setAndSaveItems }) => {
      storage but now if has been handled by the useEffect in the App.js..so all we have to do it set the items and it will be saved to the local storage
      */
     setitems(listItems);
+
+    const myItem = listItems.filter((item) => item.id === id);
+
+    const updateOptions = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ checked: myItem[0].checked }),
+    };
+    const reqUrl = `${API_URL}/${id}`;
+
+    const result = await ApiRequest(reqUrl, updateOptions);
+    if (result) setFetchError(result);
   };
 
   const handleDelete = (id) => {
-    const listItems = items.filter((item) => item.id !== id);
+    const listItems = items.filter((item) => item.id != id);
 
     /*
     🔥🔥🔥

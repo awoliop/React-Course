@@ -6,15 +6,18 @@ import Footer from "./Footer";
 import { useEffect, useState } from "react";
 import ItemList from "./ItemList";
 import "./index.css";
+import ApiRequest from "./ApiRequest";
+
 function App() {
-  const API_URL = "http://localhost:3000/items";
+  const API_URL = "http://localhost:3001/items";
   const [items, setitems] = useState([]);
   const [newItem, setNewItem] = useState("");
   const [search, setSearch] = useState("");
   const [color, setColor] = useState("");
   const [fetchError, setFetchError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const addItem = (newItem) => {
+
+  const addItem = async (newItem) => {
     // checking if the items array is non-empty, for when it is empty to initialte it with 1
     const id = items.length ? items[items.length - 1].id + 1 : 1;
 
@@ -25,6 +28,17 @@ function App() {
     };
     const listItems = [...items, myItem];
     setitems(listItems);
+
+    const postOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(myItem),
+    };
+
+    const result = await ApiRequest(API_URL, postOptions);
+    if (result) setFetchError(result);
   };
 
   const handleSubmit = (event) => {
@@ -39,7 +53,7 @@ function App() {
       try {
         const response = await fetch(API_URL);
         // if there is an isuue(error) with the fetch it will be caught by the line below and contiunded directly by the catch block of the code!!
-        if (!response.ok) throw Error("Did not recieve data.");
+        if (!response.ok) throw Error("Items not found!!");
         const listitems = await response.json();
         setitems(listitems);
         setFetchError(null);
@@ -54,7 +68,7 @@ function App() {
 
     setTimeout(() => {
       fetchItems();
-    }, 2000);
+    }, 1000);
   }, []);
 
   return (
@@ -72,7 +86,9 @@ function App() {
           {isLoading && !fetchError && (
             <p className="loading_message">Loading Items...</p>
           )}
-          {fetchError && <p style={{ color: "red" }}>{fetchError}</p>}
+          {fetchError && (
+            <p style={{ color: "red", marginTop: "140px" }}>{fetchError}</p>
+          )}
           {!fetchError && !isLoading && (
             <Content
               // if we are not search for anythin it would just render normally but if we are search it filters the items that contain the characters
@@ -80,6 +96,9 @@ function App() {
                 item.item.toLowerCase().includes(search.toLowerCase())
               )}
               setitems={setitems}
+              API_URL={API_URL}
+              fetchError={fetchError}
+              setFetchError={setFetchError}
             />
           )}
         </main>
