@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./content.css";
-import styled from "styled-components";
+import styled, { __PRIVATE__ } from "styled-components";
 import { css } from "styled-components";
 import ItemList from "./ItemList";
 import ApiRequest from "./ApiRequest";
@@ -44,7 +44,7 @@ const content = ({
     if (result) setFetchError(result);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     const listItems = items.filter((item) => item.id != id);
 
     /*
@@ -54,6 +54,12 @@ const content = ({
      */
 
     setitems(listItems);
+
+    const deleteOptions = { method: "DELETE" };
+
+    const reqUrl = `${API_URL}/${id}`;
+    const result = await ApiRequest(reqUrl, deleteOptions);
+    if (result) setFetchError(result);
   };
   return (
     <main className="main_content">

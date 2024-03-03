@@ -1,34 +1,14 @@
 {
   "items": [
     {
-      "id": "1",
+      "id": "44",
       "checked": false,
-      "item": "Almonds, Unsalted, in the blue bag"
+      "item": "sugar"
     },
     {
-      "id": "2",
-      "checked": true,
-      "item": "Pizza"
-    },
-    {
-      "id": "3",
+      "id": "45",
       "checked": false,
-      "item": "Bread"
-    },
-    {
-      "id": "4",
-      "checked": true,
-      "item": "play"
-    },
-    {
-      "id": "5",
-      "checked": false,
-      "item": "shopping"
-    },
-    {
-      "id": "6",
-      "checked": false,
-      "item": "cooking"
+      "item": "green"
     }
   ]
 }

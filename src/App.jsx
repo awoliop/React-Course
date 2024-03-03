@@ -19,10 +19,12 @@ function App() {
 
   const addItem = async (newItem) => {
     // checking if the items array is non-empty, for when it is empty to initialte it with 1
-    const id = items.length ? items[items.length - 1].id + 1 : 1;
+    let lastItem = parseInt(items[items.length - 1].id);
+    let newId = items.length ? lastItem + 1 : 1;
+    const id = newId;
 
     const myItem = {
-      id,
+      id: `${id}`,
       checked: false,
       item: newItem,
     };
@@ -80,7 +82,6 @@ function App() {
           setNewItem={setNewItem}
           handleSubmit={handleSubmit}
         />
-
         <SearchItem search={search} setSearch={setSearch} />
         <main>
           {isLoading && !fetchError && (
@@ -102,8 +103,8 @@ function App() {
             />
           )}
         </main>
-
         <Footer itemsLength={items.length} />
+        youtub
       </div>
     </>
   );
