@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "id": "44",
+      "checked": false,
+      "item": "sugar"
+    },
+    {
+      "id": "45",
+      "checked": true,
+      "item": "green"
+    },
+    {
+      "id": "46",
+      "checked": false,
+      "item": "green"
+    },
+    {
+      "id": "47",
+      "checked": true,
+      "item": "green"
+    },
+    {
+      "id": "48",
+      "checked": false,
+      "item": "green"
+    },
+    {
+      "id": "49",
+      "checked": false,
+      "item": "green"
+    }
+  ]
+}

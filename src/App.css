@@ -8,17 +8,31 @@
   align-items: center;
   justify-content: space-around;
   width: 100%;
+  background-color: gray;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  opacity: 1;
 }
 
 button {
   width: 100%;
   border: none;
   padding: 12px;
+  /* padding-top: 20px; */
 }
 
 .lists {
   width: 100%;
   min-height: 500px;
   border: 1px solid red;
-  margin-top: 20px;
+  font-size: 30px;
+  margin-top: 50px;
+}
+
+table,
+tr,
+td {
+  border: 1px solid black;
 }
